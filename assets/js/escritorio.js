@@ -112,7 +112,7 @@ const chair = { cx:0, cy:0, cs:1, cb:0 };
 const fx = { blur:10, bright:.25 };
 const look = { tx:0, ty:0, x:0, y:0 };
 let pan = 0, panDefault = true, geom = { vw:0, vh:0, sw:0, sh:0, left:0, top:0 };
-const state = { phase:"seat", sel:null, lamp:null, manualHour:null, showAll:false, anim:true, seatS:1, mouse:false, visited:new Set() };
+const state = { phase:"seat", sel:null, lamp:null, manualHour:null, showAll:false, anim:true, seatS:1, mouse:false, idle:false, visited:new Set() };
 let sitPromise = null, drag = null;
 
 const viewport = $("viewport"), cam = $("cam"), stage = $("stage"), travel = $("travel"), far = $("far"), near = $("near");
@@ -144,15 +144,20 @@ function apply(now){
   const br = reduce ? 0 : calm;
   const yaw = pose.yaw + lx * 2.2 * calm + Math.sin(t * .37) * .14 * br;
   const pitch = pose.pitch - ly * 1.3 * calm + Math.sin(t * .29 + 1) * .1 * br;
-  const ty = pose.ty + Math.sin(t * .23 + 2) * .09 * br + Math.sin(t * Math.PI * 2 * 1.6) * bob;
-  cam.style.transform = `translate(${pose.tx}%, ${ty}%) rotateY(${yaw}deg) rotateX(${pitch}deg) scale(${pose.s})`;
+  const im = reduce ? 0 : idleMix;                                   /* reposo: la cámara deriva lenta, como respirando */
+  const ty = pose.ty + Math.sin(t * .23 + 2) * .09 * br + Math.sin(t * Math.PI * 2 * 1.6) * bob + Math.sin(t * .07) * .7 * im;
+  const tx = pose.tx + Math.sin(t * .05 + 1) * 1.1 * im;
+  const sc = pose.s * (1 + (.025 + .02 * Math.sin(t * .045)) * im);
+  cam.style.transform = `translate(${tx}%, ${ty}%) rotateY(${yaw + Math.sin(t * .06) * .6 * im}deg) rotateX(${pitch}deg) scale(${sc})`;
   cam.style.filter = (fx.blur > .05 || Math.abs(fx.bright - 1) > .01) ? `blur(${fx.blur.toFixed(2)}px) brightness(${fx.bright.toFixed(3)})` : "none";
   far.style.transform = `translate(${-lx * 9 * calm}px, ${-ly * 5 * calm}px)`;
   near.style.transformOrigin = "0% 100%";
   near.style.transform = `translate(calc(${chair.cx}% + ${-lx * 34 * calm}px), calc(${chair.cy}% + ${-ly * 12 * calm}px)) scale(${chair.cs})`;
   near.style.filter = chair.cb > .05 ? `blur(${chair.cb.toFixed(2)}px)` : "none";
 }
+let idleMix = 0;
 function loop(now){
+  idleMix += ((state.idle ? 1 : 0) - idleMix) * (state.idle ? .004 : .05);
   look.x += (look.tx - look.x) * .06;
   look.y += (look.ty - look.y) * .06;
   apply(now);
@@ -695,6 +700,20 @@ function bindInput(){
   $("daybar").addEventListener("input", (e) => { state.manualHour = parseFloat(e.target.value); state.lamp = null; applyLight(); });
   $("liveBtn").addEventListener("click", () => { Sound.play("tick"); state.manualHour = null; state.lamp = null; applyLight(); toast(`Hora real de Valparaíso · ${fmt(liveHour())}`); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.sel) closeSection(false); });
+  /* reposo: sin actividad un rato, queda solo la habitación */
+  const IDLE_MS = 25000; let idleT = null;
+  const goIdle = () => {
+    if (state.sel || state.anim || !arrived) { idleT = setTimeout(goIdle, 5000); return; }
+    state.idle = true; $("room").classList.add("idle"); look.tx = 0; look.ty = 0;
+  };
+  const wake = () => {
+    clearTimeout(idleT); idleT = setTimeout(goIdle, IDLE_MS);
+    if (!state.idle) return;
+    state.idle = false; $("room").classList.remove("idle");
+    if (state.phase === "seat" && !reduce) { lscreen.classList.remove("wake"); void lscreen.offsetWidth; lscreen.classList.add("wake"); Sound.play("wake"); }
+  };
+  ["pointermove", "pointerdown", "keydown", "wheel", "touchstart", "scroll"].forEach(ev => addEventListener(ev, wake, { passive:true, capture:true }));
+  idleT = setTimeout(goIdle, IDLE_MS);
   /* pantalla completa: botón bajo el nombre o tecla F */
   const room = $("room"), fsBtn = $("fsBtn");
   const fsOn = () => document.fullscreenElement || document.webkitFullscreenElement;

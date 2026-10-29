@@ -310,3 +310,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   .glint,.grain{animation:none}
   .zoom,.panel,.fx,.dof,.tag,.hud,.curtain{transition-duration:.01s !important;transition-delay:0s !important}
 }
+
+/* reposo: se apaga lo digital y queda la habitación */
+.hud,.backbar,.spots,.torch,.lscreen .sui{transition-property:opacity;transition-duration:1.2s}
+.room.idle{cursor:none}
+.room.idle .hud,.room.idle .spots,.room.idle .torch{opacity:0 !important;transition-duration:2.5s;pointer-events:none}
+.room.idle .hud *{pointer-events:none}
+.room.idle .lscreen .sui{opacity:.04;transition-duration:4s}
+.room.idle .lscreen{box-shadow:0 0 40px rgba(120,150,255,.06)}
