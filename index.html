@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escritorio de Pedro Maiz</title>
+<meta name="description" content="Pedro Maiz, Valparaíso. Proyectos, columnas y lo que estoy construyendo, en mi escritorio.">
+<meta name="theme-color" content="#0E0C0B">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:title" content="Escritorio de Pedro Maiz">
+<meta property="og:description" content="Proyectos, columnas y lo que estoy construyendo. Pasa y siéntate.">
+<meta property="og:image" content="img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E0C0B'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23E3B262'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/escritorio.css">
+</head>
+<body>
+<div class="site">
+<section class="room" id="room" aria-label="El escritorio de Pedro">
+  <div class="viewport" id="viewport">
+    <div class="cam" id="cam">
+      <!-- la habitación vista de pie -->
+      <div class="stage" id="stage">
+        <div class="travel" id="travel">
+          <div class="layer" id="far">
+            <img class="full" src="img/fondo-noche.jpg" alt="La habitación de pie: el escritorio de madera con lámpara de latón, el computador y una ventana que da a la ciudad">
+            <img class="full fx" id="dayImg" src="img/fondo-dia.jpg" alt="" aria-hidden="true">
+            <div class="fx" id="duskWash" style="background:linear-gradient(110deg,rgba(255,140,70,.45),rgba(120,60,120,.2));mix-blend-mode:soft-light"></div>
+            <div class="fx" id="duskSky" style="inset:auto;left:4.8%;top:5.3%;width:19.6%;height:47%;background:linear-gradient(180deg,#F08A5D,#F6C08F 55%,rgba(246,192,143,0));mix-blend-mode:screen"></div>
+            <div class="fx fast" id="lampGlow" style="background:radial-gradient(circle at 66.5% 35%,rgba(255,205,120,.6),rgba(255,205,120,0) 8%),radial-gradient(ellipse 32% 20% at 64% 74%,rgba(255,180,80,.32),rgba(255,180,80,0) 70%);mix-blend-mode:screen"></div>
+            <div class="fx fast" id="dark" style="background:rgba(2,4,14,.62)"></div>
+            <canvas class="motes" id="motesWide"></canvas>
+            <div class="spots off" id="spotsFar"></div>
+          </div>
+          <div class="layer" id="near">
+            <img class="chairimg" src="img/silla-noche.webp" alt="">
+            <img class="chairimg fx" id="dayChair" src="img/silla-dia.webp" alt="" aria-hidden="true">
+            <div class="fx fast" id="darkChair" style="inset:auto;left:0;top:52.966%;width:28.571%;height:47.034%;background:rgba(2,4,14,.62);-webkit-mask:url(img/silla-noche.webp) center/100% 100%;mask:url(img/silla-noche.webp) center/100% 100%"></div>
+            <div class="spots off" id="spotsNear"></div>
+          </div>
+        </div>
+      </div>
+      <!-- el escritorio visto desde la silla -->
+      <div class="stage pov" id="pov">
+        <div class="arrive" id="arrive">
+          <div class="zoom" id="zoomPov">
+            <img class="full" id="povNight" src="img/pov-noche.jpg" alt="El escritorio visto desde la silla: el computador encendido al centro, papeles, un cuaderno, una taza, la lámpara a la derecha y la ventana a la izquierda">
+            <img class="full fx" id="povDay" src="img/pov-dia.jpg" alt="" aria-hidden="true">
+            <div class="fx" id="povDusk" style="background:linear-gradient(110deg,rgba(255,140,70,.42),rgba(120,60,120,.18));mix-blend-mode:soft-light"></div>
+            <div class="fx" id="povDuskSky" style="inset:auto;left:0;top:0;width:17.3%;height:51%;background:linear-gradient(180deg,#F08A5D,#F6C08F 55%,rgba(246,192,143,0));mix-blend-mode:screen"></div>
+            <div class="fx fast" id="povLamp" style="background:radial-gradient(circle at 68.2% 24%,rgba(255,205,120,.55),rgba(255,205,120,0) 7%),radial-gradient(ellipse 34% 22% at 72% 68%,rgba(255,180,80,.3),rgba(255,180,80,0) 70%);mix-blend-mode:screen"></div>
+            <div class="fx fast" id="povDark" style="background:rgba(2,4,14,.64)"></div>
+            <canvas class="motes" id="motesPov"></canvas>
+            <div class="fx" id="screenGlow" style="background:radial-gradient(ellipse 30% 30% at 48% 54%,rgba(140,170,255,.2),rgba(140,170,255,0) 70%);mix-blend-mode:screen"></div>
+            <div class="lscreen" id="lscreen">
+              <div class="sui" id="laptopUI"></div>
+              <button class="screen-cover" type="button" id="screenCover" aria-label="Abrir el computador: proyectos hechos con Claude"></button>
+            </div>
+            <div class="spots off" id="spotsPov"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dof" id="dof"></div>
+    <div class="torch" id="torch"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- visor -->
+  <div class="hud" id="hud">
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+    <div class="q tl">
+      <a class="brand" href="#" id="home">Pedro Maiz</a>
+      <span class="k">Escritorio · Valparaíso</span>
+    </div>
+
+    <div class="q tr">
+      <div class="row"><span class="k">Hora</span><span class="v" id="ltime">--:--</span></div>
+      <div class="ruler">
+        <div class="ticks"></div>
+        <div class="lbls"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+        <input class="daybar" id="daybar" type="range" min="0" max="24" step="0.25" value="12" aria-label="Hora del día en la habitación">
+      </div>
+      <div class="row"><span class="k">Luz</span><span class="meter" id="lux" aria-hidden="true"></span><button class="live" id="liveBtn" type="button" aria-pressed="true" title="Seguir la hora real de Valparaíso"><i></i><span>En vivo</span></button></div>
+    </div>
+
+    <div class="q bl">
+      <span class="hint" id="hint">Toca lo que te llame la atención.</span>
+      <button class="now" id="nowBtn" type="button"><span class="k">Ahora</span><span class="v" id="nowText">…</span></button>
+      <span class="k hide-sm" id="updated"></span>
+    </div>
+
+    <div class="q br">
+      <button class="cell" id="exploreBtn" type="button" aria-pressed="false" aria-label="Objetos explorados; mostrar todos">
+        <span class="k">Explorado</span><span class="ind"><span class="ticks8" id="expTicks" aria-hidden="true"></span></span><span class="v"><span id="expN">0</span>/<span id="expTotal">8</span></span>
+      </button>
+      <button class="cell" id="soundBtn" type="button" data-state="idle" aria-pressed="true" aria-label="Sonido ambiente">
+        <span class="k" id="soundK">Sonido</span><span class="ind"><span class="eq" id="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></span><span class="v" id="soundV">Sí</span>
+      </button>
+      <button class="cell" id="postureBtn" type="button" aria-label="Cambiar postura">
+        <span class="k">Postura</span><span class="ind"><span class="pos" aria-hidden="true"><i id="posSeat" class="on"></i><i id="posStand"></i></span></span><span class="v" id="postureV">Sentado</span>
+      </button>
+    </div>
+  </div>
+  <div class="backbar hide" id="backbar"><button type="button" id="backBtn"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5"/></svg>Volver al escritorio</button></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <aside class="panel" id="panel" aria-labelledby="panelTitle" aria-hidden="true">
+    <button class="closebtn" type="button" id="closeBtn"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7.5 3.5 3 8l4.5 4.5"/></svg>Volver al escritorio</button>
+    <div class="kicker" id="panelKicker"></div>
+    <h2 id="panelTitle"></h2>
+    <p class="lead" id="panelLead"></p>
+    <div id="panelBody"></div>
+  </aside>
+
+  <div class="curtain" id="curtain"><span role="status">Preparando el escritorio…</span></div>
+  <div class="grain" aria-hidden="true"></div>
+</section>
+
+<section class="index" aria-labelledby="idxTitle">
+  <div class="wrap">
+    <div class="kicker">Índice</div>
+    <h2 id="idxTitle">Lo que hay en el escritorio</h2>
+    <p class="lead">Cada objeto abre una parte de lo que hago. También puedes ir directo desde aquí.</p>
+    <div class="objs" id="objs"></div>
+    <footer>
+      <span>Pedro Maiz · Valparaíso, Chile · Esta habitación la construí con Claude.</span>
+      <nav aria-label="Redes">
+        <a href="#" data-red="linkedin">LinkedIn</a>
+        <a href="#" data-red="instagram">Instagram</a>
+        <a href="https://beacons.ai/pedromaizh" data-red="beacons">Beacons</a>
+      </nav>
+    </footer>
+  </div>
+</section>
+</div>
+
+<script src="assets/js/escritorio.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+{
+  "_como_editar": "Este archivo es todo el texto del sitio. Cambia los textos entre comillas y guarda; el diseño no se toca. Los textos entre corchetes [así] son pendientes. Guía completa en docs/COMO-ACTUALIZAR.md.",
+
+  "actualizado": "28 · 10 · 2026",
+  "ahora": "Gira Jóvenes Líderes P!ensa",
+
+  "objetos": [
+    { "clave": "proyectos",    "nombre": "El computador", "abre": "Proyectos con Claude" },
+    { "clave": "columnas",     "nombre": "Los papeles",   "abre": "Columnas y cartas" },
+    { "clave": "en-que-ando",  "nombre": "El cuaderno",   "abre": "En qué ando" },
+    { "clave": "recorrido",    "nombre": "El mapa",       "abre": "Mi recorrido" },
+    { "clave": "observatorio", "nombre": "La ventana",    "abre": "Observatorio Regional" },
+    { "clave": "conversemos",  "nombre": "El café",       "abre": "Conversemos" },
+    { "clave": "sobre-mi",     "nombre": "Los libros",    "abre": "Sobre mí" },
+    { "clave": "herramientas", "nombre": "Los lápices",   "abre": "Herramientas" },
+    { "clave": "lampara",      "nombre": "La lámpara",    "abre": "Prende o apaga la luz" }
+  ],
+
+  "proyectos": [
+    { "id": "relieve", "iniciales": "Re", "color": "#9DB4FF", "nombre": "Relieve", "area": "Datos · sector público", "estado": "idea",
+      "descripcion": "Una consultora de datos para el sector público: rigor técnico y un lenguaje que sirva para decidir.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "salud", "iniciales": "Sa", "color": "#6FD9BF", "nombre": "Dotación de salud", "area": "Datos · políticas públicas", "estado": "desarrollo",
+      "descripcion": "La dotación de personal de salud municipal en la Región de Valparaíso, con un boletín de política pública.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "volta", "iniciales": "Vo", "color": "#E3B262", "nombre": "VOLTA", "area": "Emprendimiento", "estado": "desarrollo",
+      "descripcion": "Comprar, remodelar y vender departamentos junto a un amigo, con marca y estilo propios.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "album", "iniciales": "Al", "color": "#F2A2B8", "nombre": "Álbum de láminas", "area": "Producto", "estado": "validacion",
+      "descripcion": "Un álbum coleccionable para que abuelos, padres e hijos lo completen juntos.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "cuentos", "iniciales": "Cu", "color": "#A7E08F", "nombre": "Cuentos en verso", "area": "Libros infantiles", "estado": "desarrollo",
+      "descripcion": "Cuentos sobre los animales y la naturaleza de Chile, escritos con mi papá.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "ruta", "iniciales": "Rc", "color": "#F5C77E", "nombre": "Ruta cultural de Valparaíso", "area": "Mapa · cultura", "estado": "idea",
+      "descripcion": "Artistas, escritores, científicos y músicos que pasaron por el puerto, en un recorrido para caminar.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "news", "iniciales": "Nl", "color": "#C6B3FF", "nombre": "Newsletter quincenal", "area": "Escritura · Substack", "estado": "idea",
+      "descripcion": "Una carta cada dos semanas, con mi mirada, sobre temas variados.", "ultimaVersion": "[Enlace o fecha]" },
+    { "id": "sitio", "iniciales": "Es", "color": "#FFB48A", "nombre": "Este escritorio", "area": "Sitio personal", "estado": "desarrollo",
+      "descripcion": "Mi sitio, pensado como una habitación: cada objeto abre una parte de lo que hago.", "ultimaVersion": "[Enlace o fecha]" }
+  ],
+
+  "secciones": {
+    "proyectos": {
+      "estilo": "pantalla", "etiqueta": "El computador", "titulo": "Proyectos hechos con Claude",
+      "bajada": "Lo que he construido conversando con IA: ideas que partieron en un chat y hoy tienen forma."
+    },
+    "columnas": {
+      "estilo": "papel", "inclinacion": ".5deg", "etiqueta": "Los papeles", "titulo": "Columnas y cartas",
+      "bajada": "La última arriba; las anteriores se apilan debajo.",
+      "entradas": [
+        { "destacado": true, "dato": "El Mercurio de Valparaíso · [Fecha]", "titulo": "[Título de la última columna]",
+          "texto": "[Resumen de dos líneas de la columna sobre la Encuesta de Opinión Política P!ensa 2026.]", "enlace": "#", "textoEnlace": "Leer en el medio →" },
+        { "dato": "[Medio] · [Fecha]", "titulo": "[Columna anterior]" },
+        { "dato": "[Medio] · [Fecha]", "titulo": "[Carta al director]" }
+      ]
+    },
+    "en-que-ando": {
+      "estilo": "cuaderno", "inclinacion": "-.6deg", "etiqueta": "El cuaderno", "titulo": "En qué ando",
+      "bajada": "Lo que tengo anotado para estas semanas.",
+      "entradas": [
+        { "titulo": "Gira Jóvenes Líderes P!ensa", "texto": "Recorriendo municipios con el concurso." },
+        { "titulo": "Este sitio", "texto": "Construyendo esta habitación, objeto por objeto." },
+        { "titulo": "Newsletter quincenal", "texto": "Definiendo formato y primeros temas." },
+        { "titulo": "Cuentos en verso", "texto": "Escribiéndolos junto a mi papá." }
+      ]
+    },
+    "recorrido": {
+      "estilo": "mapa", "inclinacion": ".4deg", "etiqueta": "El mapa", "titulo": "Recorrido",
+      "bajada": "De dónde vengo y por dónde he pasado.",
+      "entradas": [
+        { "dato": "2019 – 2024", "titulo": "Ingeniería Comercial, mención Economía", "texto": "Pontificia Universidad Católica de Chile." },
+        { "dato": "[Años]", "titulo": "Operación Infancia", "texto": "Cofundador y director ejecutivo." },
+        { "dato": "[Año]", "titulo": "Investigador en Fundación P!ensa" },
+        { "destacado": true, "dato": "Desde marzo 2026", "titulo": "Director Social de Fundación P!ensa", "texto": "Programas de formación de jóvenes, Observatorio Regional y alianzas internacionales." }
+      ]
+    },
+    "observatorio": {
+      "estilo": "vidrio", "etiqueta": "La ventana", "titulo": "Observatorio Regional",
+      "bajada": "Desde aquí se ve la región. En el Observatorio de P!ensa la miramos con datos, para entender qué pasa en Valparaíso.",
+      "entradas": [
+        { "dato": "Último boletín · [Fecha]", "titulo": "[Título del boletín más reciente]", "enlace": "#", "textoEnlace": "Ir al Observatorio →" }
+      ]
+    },
+    "conversemos": {
+      "estilo": "tarjeta", "inclinacion": "-.4deg", "etiqueta": "El café", "titulo": "Conversemos",
+      "bajada": "¿Un café? Aquí me encuentras.",
+      "entradas": [
+        { "titulo": "LinkedIn", "enlace": "#", "textoEnlace": "[Enlace] →" },
+        { "titulo": "Instagram", "enlace": "#", "textoEnlace": "[Enlace] →" },
+        { "titulo": "Beacons", "enlace": "https://beacons.ai/pedromaizh", "textoEnlace": "beacons.ai/pedromaizh →" },
+        { "titulo": "Correo", "texto": "[Correo de contacto]", "copiar": "[Correo de contacto]" }
+      ]
+    },
+    "sobre-mi": {
+      "estilo": "papel", "inclinacion": "-.5deg", "etiqueta": "Los libros", "titulo": "Sobre mí",
+      "bajada": "Soy Pedro José Maiz Hohlberg, economista y Director Social de Fundación P!ensa, un think tank regional en Valparaíso. Me gusta convertir datos en decisiones que sirvan, y armar cosas nuevas con otros.",
+      "entradas": [
+        { "titulo": "Formación de jóvenes", "texto": "Escuela de Políticas Públicas, Líderes del Mañana y P!ensa Joven." },
+        { "titulo": "Datos para la región", "texto": "El Observatorio Regional y sus boletines." },
+        { "titulo": "Antes", "texto": "Cofundé Operación Infancia y fui su director ejecutivo." }
+      ]
+    },
+    "herramientas": {
+      "estilo": "papel", "inclinacion": ".6deg", "etiqueta": "Los lápices", "titulo": "Herramientas",
+      "bajada": "Con lo que trabajo todos los días.",
+      "entradas": [
+        { "titulo": "R · Python · Stata", "texto": "Econometría: datos de panel, diferencias en diferencias." },
+        { "titulo": "QGIS", "texto": "Análisis espacial." },
+        { "titulo": "Claude", "texto": "Para pensar, escribir y construir proyectos como este." },
+        { "titulo": "Inglés", "texto": "Nivel C2." }
+      ]
+    }
+  },
+
+  "redes": {
+    "linkedin": "#",
+    "instagram": "#",
+    "beacons": "https://beacons.ai/pedromaizh"
+  }
+}
