@@ -1,6 +1,6 @@
 # Escritorio de Pedro Maiz
 
-Mi sitio personal, pensado como una habitación: abres la página y estás sentado frente a mi escritorio en Valparaíso. Cada objeto abre una parte de lo que hago.
+Mi sitio personal, pensado como una habitación: abres la página y estás sentado frente a mi escritorio, con la bahía de Viña del Mar en la ventana. Cada objeto abre una parte de lo que hago.
 
 | Objeto | Abre |
 |---|---|
@@ -12,6 +12,8 @@ Mi sitio personal, pensado como una habitación: abres la página y estás senta
 | El café | Contacto y redes |
 | Los libros | Sobre mí |
 | Los lápices | Herramientas |
+| Los audífonos | Lo que estoy escuchando |
+| El pan con palta | Recomendaciones de lugares y recetas |
 | La lámpara | Prende y apaga la luz |
 
 La luz sigue la hora real de Valparaíso, hay sonido ambiente (se apaga en la esquina inferior derecha) y en las esquinas hay indicadores mínimos: hora, luz, explorado, sonido y postura.

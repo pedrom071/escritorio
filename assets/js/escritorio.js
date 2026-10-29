@@ -29,25 +29,29 @@ function useContent(c){
 /* zonas de cada objeto, en % de cada foto */
 const WIDE = {
   proyectos:{ x:35.1, y:47.7, w:17, h:23 },
-  columnas:{ x:38.1, y:71.5, w:26.8, h:13.5 },
+  columnas:{ x:39.5, y:71.5, w:25.4, h:13.5 },
   "en-que-ando":{ x:62.2, y:74.2, w:17, h:9.6 },
   recorrido:{ x:43, y:0.5, w:20.8, h:41.5, below:true },
   observatorio:{ x:4.8, y:4, w:19.8, h:46, below:true },
-  conversemos:{ x:28.3, y:68.9, w:8, h:12.7 },
+  conversemos:{ x:21.5, y:68.5, w:8.5, h:10.5 },
+  recomendaciones:{ x:27, y:76.3, w:12.3, h:6.8 },
   "sobre-mi":{ x:56.5, y:60.6, w:14.9, h:10.2 },
   herramientas:{ x:76.2, y:59.9, w:4.5, h:13.2 },
-  lampara:{ x:61.9, y:19, w:15.5, h:38 }
+  escuchando:{ x:69, y:35.5, w:7.4, h:15.5 },
+  lampara:{ x:61.9, y:19, w:9.2, h:18 }
 };
 const SEATED = {
   proyectos:{ x:33.3, y:67.3, w:29.2, h:9.2, zs:1.6 },
-  columnas:{ x:26.5, y:75.5, w:36, h:21, zs:1.8 },
+  columnas:{ x:34, y:75.5, w:29, h:21, zs:1.8 },
   "en-que-ando":{ x:64.5, y:77, w:23, h:17, zs:1.9 },
   recorrido:{ x:36.5, y:0.5, w:23, h:31, zs:1.7, below:true },
   observatorio:{ x:0.5, y:1, w:17, h:49, zs:1.6, below:true },
-  conversemos:{ x:13.5, y:66, w:11.5, h:19, zs:2.0 },
+  conversemos:{ x:13, y:66, w:12, h:17, zs:2.0 },
+  recomendaciones:{ x:16.5, y:83, w:17, h:12.5, zs:2.0 },
   "sobre-mi":{ x:62, y:54, w:15, h:14, zs:2.0 },
   herramientas:{ x:81.5, y:59, w:6.5, h:14, zs:2.2 },
-  lampara:{ x:62, y:8, w:19, h:20 }
+  escuchando:{ x:72.5, y:25, w:8.8, h:20, zs:1.9 },
+  lampara:{ x:62, y:7, w:11, h:18 }
 };
 const SCREEN_QUAD = [[36.13,40.68],[59.17,40.36],[59.64,65.47],[35.95,65.78]];
 const CHAIR = { x:1.2, y:55, w:22.6, h:44.5 };

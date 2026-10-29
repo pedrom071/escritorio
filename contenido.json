@@ -1,7 +1,7 @@
 {
   "_como_editar": "Este archivo es todo el texto del sitio. Cambia los textos entre comillas y guarda; el diseño no se toca. Los textos entre corchetes [así] son pendientes. Guía completa en docs/COMO-ACTUALIZAR.md.",
 
-  "actualizado": "28 · 10 · 2026",
+  "actualizado": "29 · 10 · 2026",
   "ahora": "Gira Jóvenes Líderes P!ensa",
 
   "objetos": [
@@ -13,6 +13,8 @@
     { "clave": "conversemos",  "nombre": "El café",       "abre": "Conversemos" },
     { "clave": "sobre-mi",     "nombre": "Los libros",    "abre": "Sobre mí" },
     { "clave": "herramientas", "nombre": "Los lápices",   "abre": "Herramientas" },
+    { "clave": "escuchando",   "nombre": "Los audífonos", "abre": "Lo que estoy escuchando" },
+    { "clave": "recomendaciones", "nombre": "El pan con palta", "abre": "Recomendaciones" },
     { "clave": "lampara",      "nombre": "La lámpara",    "abre": "Prende o apaga la luz" }
   ],
 
@@ -104,6 +106,22 @@
         { "titulo": "QGIS", "texto": "Análisis espacial." },
         { "titulo": "Claude", "texto": "Para pensar, escribir y construir proyectos como este." },
         { "titulo": "Inglés", "texto": "Nivel C2." }
+      ]
+    },
+    "escuchando": {
+      "estilo": "tarjeta", "inclinacion": ".4deg", "etiqueta": "Los audífonos", "titulo": "Lo que estoy escuchando",
+      "bajada": "[Una línea sobre la música que te acompaña mientras trabajas.]",
+      "entradas": [
+        { "destacado": true, "dato": "[Artista] · [Álbum]", "titulo": "[Lo que más estás escuchando]", "enlace": "#", "textoEnlace": "[Enlace] →" },
+        { "dato": "Playlist", "titulo": "[Nombre de tu playlist]", "enlace": "#", "textoEnlace": "[Enlace] →" }
+      ]
+    },
+    "recomendaciones": {
+      "estilo": "papel", "inclinacion": "-.4deg", "etiqueta": "El pan con palta", "titulo": "Recomendaciones",
+      "bajada": "Lugares y recetas que me gustan.",
+      "entradas": [
+        { "dato": "Un lugar · [Comuna]", "titulo": "[Nombre del lugar]", "texto": "[Por qué ir y qué pedir.]" },
+        { "dato": "Una receta", "titulo": "[Nombre de la receta]", "texto": "[Tu versión, en pocas líneas.]" }
       ]
     }
   },

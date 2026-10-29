@@ -17,6 +17,12 @@ La versión de día se pidió con la vista sentada de noche y la habitación de 
 ## 4. El pasillo (guardado en `extras/pasillo/`)
 > Photorealistic interior photograph of a dim, quiet hallway at night, straight-on symmetric view, centered: a closed solid dark walnut wooden door with two recessed panels, a small blank polished brass name plate on the upper panel with no text, a brass lever handle on the right, warm golden lamplight leaking through the gap under the door onto a worn wooden plank floor. […] No people, no text, no signs, no logos.
 
+## 5. Más mío (29 oct 2026)
+Sobre la foto sentado de noche que ya estaba en el sitio, con cambios mínimos:
+> Edit the reference photograph with minimal changes. Keep everything else exactly identical […] Make only these four changes, all photorealistic: (1) a pair of large black over-ear headphones hangs naturally from the arm of the brass desk lamp; (2) a small white plate with toasted bread spread with mashed green avocado and topped with soft scrambled eggs; (3) the window now shows the night view from Concón, Chile, looking south across the bay toward Reñaca and Viña del Mar; (4) the framed map becomes an old, realistic printed map of the central Chilean coast around Valparaíso, Viña del Mar and Concón, no readable text.
+
+Las otras tres fotos (sentado de día, de pie de noche y de día) se pidieron con la foto antigua correspondiente y esta nueva como referencias. En la de pie de día, el tazón, el plato y los audífonos se trasplantaron desde la de noche para que no aparezcan dobles al cambiar la luz.
+
 ## Procesamiento
 - `herramientas/alinear-dia-noche.py`: alinea la foto de día sobre la de noche para que el cambio de luz no salte.
 - `herramientas/recortar-silla.py`: separa la silla del fondo para darle profundidad al moverse.
