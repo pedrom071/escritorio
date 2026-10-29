@@ -115,6 +115,8 @@ let pose = { ...POSES.seat }, bob = 0;
 const chair = { cx:0, cy:0, cs:1, cb:0 };
 const fx = { blur:10, bright:.25 };
 const look = { tx:0, ty:0, x:0, y:0 };
+const OVERSCAN = { desk:1.16, phone:1.05 };   /* cuánto más grande que la pantalla: más = se puede mirar más a los lados */
+const LOOK_YAW = 4.2;                           /* grados que gira la cabeza al llevar el cursor al borde */
 let pan = 0, panDefault = true, geom = { vw:0, vh:0, sw:0, sh:0, left:0, top:0 };
 const state = { phase:"seat", sel:null, lamp:null, manualHour:null, showAll:false, anim:true, seatS:1, mouse:false, idle:false, visited:new Set() };
 let sitPromise = null, drag = null;
@@ -127,6 +129,9 @@ function layout(){
   const vw = r.width, vh = r.height, ratio = IMG_W / IMG_H;
   let sw, sh;
   if (vw / vh > ratio) { sw = vw; sh = vw / ratio; } else { sh = vh; sw = vh * ratio; }
+  /* la foto es un poco más grande que la pantalla: los bordes se asoman al mirar a los lados */
+  const os = narrow() ? OVERSCAN.phone : OVERSCAN.desk;
+  sw *= os; sh *= os;
   const maxPan = Math.max(0, (sw - vw) / 2);
   if (panDefault) pan = (0.5 - 0.47) * sw;
   pan = clamp(pan, -maxPan, maxPan);
@@ -147,13 +152,16 @@ function apply(now){
   const lx = look.x, ly = look.y, t = now / 1000;
   const calm = state.sel ? 0 : 1;
   const br = reduce ? 0 : calm;
-  const yaw = pose.yaw + lx * 2.2 * calm + Math.sin(t * .37) * .14 * br;
+  const yaw = pose.yaw + lx * LOOK_YAW * calm + Math.sin(t * .37) * .14 * br;
+  /* mirar alrededor: el cursor en el borde muestra lo que había fuera de la pantalla */
+  const roomX = Math.max(0, (geom.sw - geom.vw) / 2 - Math.abs(pan)), roomY = Math.max(0, (geom.sh - geom.vh) / 2);
+  const px = -lx * 2 * roomX * .9 * calm, py = -ly * 2 * roomY * .75 * calm;
   const pitch = pose.pitch - ly * 1.3 * calm + Math.sin(t * .29 + 1) * .1 * br;
   const im = reduce ? 0 : idleMix;                                   /* reposo: la cámara deriva lenta, como respirando */
   const ty = pose.ty + Math.sin(t * .23 + 2) * .09 * br + Math.sin(t * Math.PI * 2 * 1.6) * bob + Math.sin(t * .07) * .7 * im;
   const tx = pose.tx + Math.sin(t * .05 + 1) * 1.1 * im;
   const sc = pose.s * (1 + (.025 + .02 * Math.sin(t * .045)) * im);
-  cam.style.transform = `translate(${tx}%, ${ty}%) rotateY(${yaw + Math.sin(t * .06) * .6 * im}deg) rotateX(${pitch}deg) scale(${sc})`;
+  cam.style.transform = `translate(calc(${tx}% + ${px.toFixed(1)}px), calc(${ty}% + ${py.toFixed(1)}px)) rotateY(${yaw + Math.sin(t * .06) * .6 * im}deg) rotateX(${pitch}deg) scale(${sc})`;
   cam.style.filter = (fx.blur > .05 || Math.abs(fx.bright - 1) > .01) ? `blur(${fx.blur.toFixed(2)}px) brightness(${fx.bright.toFixed(3)})` : "none";
   far.style.transform = `translate(${-lx * 9 * calm}px, ${-ly * 5 * calm}px)`;
   near.style.transformOrigin = "0% 100%";
@@ -542,7 +550,7 @@ function makeSpot(o, r, onClick){
   b.type = "button"; b.className = "hs" + (r.below ? " below" : ""); b.dataset.key = o.key || "chair";
   b.style.left = r.x + "%"; b.style.top = r.y + "%"; b.style.width = r.w + "%"; b.style.height = r.h + "%";
   b.setAttribute("aria-label", `${o.name}: ${o.what}`);
-  b.innerHTML = `<span class="shine" aria-hidden="true"></span><span class="glint" aria-hidden="true" style="animation-delay:${(Math.random() * -3.8).toFixed(2)}s"></span><span class="tag" aria-hidden="true"><b>${esc(o.name)}</b><small>${esc(o.what)}</small></span>`;
+  b.innerHTML = `<span class="shine" aria-hidden="true"></span><span class="tag" aria-hidden="true"><b>${esc(o.name)}</b><small>${esc(o.what)}</small></span>`;
   b.addEventListener("click", (e) => { e.stopPropagation(); onClick(); });
   b.addEventListener("pointerenter", fitTags); b.addEventListener("focus", fitTags);
   return b;

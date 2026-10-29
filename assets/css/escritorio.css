@@ -87,10 +87,7 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .spots.off .hs{pointer-events:none}
 .hs{position:absolute;pointer-events:auto;padding:0;margin:0;background:transparent;border:0;border-radius:40%;cursor:pointer;min-width:44px;min-height:44px}
 .shine{position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,218,160,.42),rgba(255,218,160,.12) 60%,rgba(255,218,160,0));mix-blend-mode:screen;opacity:0;transition:opacity .5s ease;pointer-events:none}
-.glint{position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:#FFE3B0;box-shadow:0 0 10px 3px rgba(255,214,150,.55);animation:breathe 3.8s ease-in-out infinite;pointer-events:none}
 @keyframes breathe{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:.95;transform:scale(1.1)}}
-.standing .glint{display:none}
-.hs.seen .glint{animation:none;opacity:.22;transform:scale(.6)}
 .tag{position:absolute;left:50%;translate:var(--nx,0px) var(--ny,0px);bottom:calc(100% + 6px);transform:translate(-50%,6px) rotate(-1.4deg);padding:7px 12px 8px;background:var(--paper);color:var(--p-ink);border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.4);white-space:nowrap;text-align:left;opacity:0;transition:opacity .25s,transform .4s var(--ease-out);pointer-events:none}
 .tag b{display:block;font:italic 400 18px/1.05 var(--f-display)}
 .tag small{display:block;margin-top:3px;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--p-muted)}
@@ -307,7 +304,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
   .tag small{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .glint,.grain{animation:none}
+  .grain{animation:none}
   .zoom,.panel,.fx,.dof,.tag,.hud,.curtain{transition-duration:.01s !important;transition-delay:0s !important}
 }
 
