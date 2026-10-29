@@ -91,7 +91,7 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 @keyframes breathe{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:.95;transform:scale(1.1)}}
 .standing .glint{display:none}
 .hs.seen .glint{animation:none;opacity:.22;transform:scale(.6)}
-.tag{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translate(-50%,6px) rotate(-1.4deg);padding:7px 12px 8px;background:var(--paper);color:var(--p-ink);border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.4);white-space:nowrap;text-align:left;opacity:0;transition:opacity .25s,transform .4s var(--ease-out);pointer-events:none}
+.tag{position:absolute;left:50%;translate:var(--nx,0px) var(--ny,0px);bottom:calc(100% + 6px);transform:translate(-50%,6px) rotate(-1.4deg);padding:7px 12px 8px;background:var(--paper);color:var(--p-ink);border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.4);white-space:nowrap;text-align:left;opacity:0;transition:opacity .25s,transform .4s var(--ease-out);pointer-events:none}
 .tag b{display:block;font:italic 400 18px/1.05 var(--f-display)}
 .tag small{display:block;margin-top:3px;font:500 9.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--p-muted)}
 .hs.below .tag{bottom:auto;top:calc(100% + 6px);transform:translate(-50%,-6px) rotate(1.2deg)}

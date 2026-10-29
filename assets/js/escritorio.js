@@ -32,7 +32,7 @@ const WIDE = {
   columnas:{ x:39.5, y:71.5, w:25.4, h:13.5 },
   "en-que-ando":{ x:62.2, y:74.2, w:17, h:9.6 },
   recorrido:{ x:43, y:0.5, w:20.8, h:41.5, below:true },
-  observatorio:{ x:4.8, y:4, w:19.8, h:46, below:true },
+  observatorio:{ x:4.8, y:4, w:19.8, h:38, below:true },
   conversemos:{ x:21.5, y:68.5, w:8.5, h:10.5 },
   recomendaciones:{ x:27, y:76.3, w:12.3, h:6.8 },
   "sobre-mi":{ x:56.5, y:60.6, w:14.9, h:10.2 },
@@ -140,6 +140,7 @@ function layout(){
   motes.forEach(m => m.resize(sw, sh));
   renderSit(state.seatS, false);
   applyZoom();
+  requestAnimationFrame(fitTags);
 }
 
 function apply(now){
@@ -543,7 +544,21 @@ function makeSpot(o, r, onClick){
   b.setAttribute("aria-label", `${o.name}: ${o.what}`);
   b.innerHTML = `<span class="shine" aria-hidden="true"></span><span class="glint" aria-hidden="true" style="animation-delay:${(Math.random() * -3.8).toFixed(2)}s"></span><span class="tag" aria-hidden="true"><b>${esc(o.name)}</b><small>${esc(o.what)}</small></span>`;
   b.addEventListener("click", (e) => { e.stopPropagation(); onClick(); });
+  b.addEventListener("pointerenter", fitTags); b.addEventListener("focus", fitTags);
   return b;
+}
+/* que ninguna etiqueta quede cortada por el borde de la pantalla */
+function fitTags(){
+  const v = viewport.getBoundingClientRect(), m = 12;
+  document.querySelectorAll(".hs .tag").forEach(t => {
+    const nx = parseFloat(t.style.getPropertyValue("--nx")) || 0, ny = parseFloat(t.style.getPropertyValue("--ny")) || 0;
+    const r = t.getBoundingClientRect();
+    if (!r.width) return;
+    const L = r.left - nx, R = r.right - nx, T = r.top - ny;
+    const dx = L < v.left + m ? v.left + m - L : (R > v.right - m ? v.right - m - R : 0);
+    const dy = T < v.top + m ? v.top + m - T : 0;
+    t.style.setProperty("--nx", dx.toFixed(1) + "px"); t.style.setProperty("--ny", dy.toFixed(1) + "px");
+  });
 }
 function buildSpots(){
   const act = (o) => () => o.lamp ? toggleLamp() : openSection(o.key);
@@ -593,6 +608,7 @@ function updateChrome(){
   lscreen.classList.toggle("active", onScreen);
   $("screenCover").disabled = !(seated && idle);
   viewport.classList.toggle("show-all", state.showAll);
+  requestAnimationFrame(fitTags);
   $("exploreBtn").setAttribute("aria-pressed", String(state.showAll));
   $("postureV").textContent = state.anim && arrived ? "…" : (standing ? "De pie" : "Sentado");
   $("posSeat").classList.toggle("on", seated); $("posStand").classList.toggle("on", standing);
