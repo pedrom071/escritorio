@@ -115,8 +115,8 @@ let pose = { ...POSES.seat }, bob = 0;
 const chair = { cx:0, cy:0, cs:1, cb:0 };
 const fx = { blur:10, bright:.25 };
 const look = { tx:0, ty:0, x:0, y:0 };
-const OVERSCAN = { desk:1.16, phone:1.05 };   /* cuánto más grande que la pantalla: más = se puede mirar más a los lados */
-const LOOK_YAW = 4.2;                           /* grados que gira la cabeza al llevar el cursor al borde */
+const OVERSCAN = { desk:1.12, phone:1.05 };   /* cuánto más grande que la pantalla: más = se puede mirar más a los lados */
+const LOOK_YAW = 3.2;                           /* grados que gira la cabeza al llevar el cursor al borde */
 let pan = 0, panDefault = true, geom = { vw:0, vh:0, sw:0, sh:0, left:0, top:0 };
 const state = { phase:"seat", sel:null, lamp:null, manualHour:null, showAll:false, anim:true, seatS:1, mouse:false, idle:false, visited:new Set() };
 let sitPromise = null, drag = null;
@@ -155,7 +155,7 @@ function apply(now){
   const yaw = pose.yaw + lx * LOOK_YAW * calm + Math.sin(t * .37) * .14 * br;
   /* mirar alrededor: el cursor en el borde muestra lo que había fuera de la pantalla */
   const roomX = Math.max(0, (geom.sw - geom.vw) / 2 - Math.abs(pan)), roomY = Math.max(0, (geom.sh - geom.vh) / 2);
-  const px = -lx * 2 * roomX * .9 * calm, py = -ly * 2 * roomY * .75 * calm;
+  const px = -lx * 2 * roomX * .8 * calm, py = -ly * 2 * roomY * .65 * calm;
   const pitch = pose.pitch - ly * 1.3 * calm + Math.sin(t * .29 + 1) * .1 * br;
   const im = reduce ? 0 : idleMix;                                   /* reposo: la cámara deriva lenta, como respirando */
   const ty = pose.ty + Math.sin(t * .23 + 2) * .09 * br + Math.sin(t * Math.PI * 2 * 1.6) * bob + Math.sin(t * .07) * .7 * im;
@@ -171,8 +171,8 @@ function apply(now){
 let idleMix = 0;
 function loop(now){
   idleMix += ((state.idle ? 1 : 0) - idleMix) * (state.idle ? .004 : .05);
-  look.x += (look.tx - look.x) * .06;
-  look.y += (look.ty - look.y) * .06;
+  look.x += (look.tx - look.x) * .035;   /* más bajo = la mirada sigue al cursor con más calma */
+  look.y += (look.ty - look.y) * .035;
   apply(now);
   const glow = lampLevel();
   motes[0].draw(state.seatS < .999 ? glow : 0);
