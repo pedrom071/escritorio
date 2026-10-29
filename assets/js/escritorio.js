@@ -695,6 +695,22 @@ function bindInput(){
   $("daybar").addEventListener("input", (e) => { state.manualHour = parseFloat(e.target.value); state.lamp = null; applyLight(); });
   $("liveBtn").addEventListener("click", () => { Sound.play("tick"); state.manualHour = null; state.lamp = null; applyLight(); toast(`Hora real de Valparaíso · ${fmt(liveHour())}`); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.sel) closeSection(false); });
+  /* pantalla completa: botón bajo el nombre o tecla F */
+  const room = $("room"), fsBtn = $("fsBtn");
+  const fsOn = () => document.fullscreenElement || document.webkitFullscreenElement;
+  const toggleFull = () => {
+    if (fsOn()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { const req = room.requestFullscreen || room.webkitRequestFullscreen; if (req) { const r = req.call(room); if (r && r.catch) r.catch(() => toast("Tu navegador no permite pantalla completa aquí")); } }
+  };
+  if (document.fullscreenEnabled || document.webkitFullscreenEnabled) {
+    fsBtn.hidden = false;
+    fsBtn.addEventListener("click", () => { Sound.play("tick"); toggleFull(); });
+    const sync = () => { const on = !!fsOn(); room.classList.toggle("is-full", on); $("fsLbl").textContent = on ? "Salir de pantalla completa" : "Pantalla completa"; setTimeout(layout, 60); };
+    document.addEventListener("fullscreenchange", sync); document.addEventListener("webkitfullscreenchange", sync);
+    document.addEventListener("keydown", (e) => {
+      if ((e.key === "f" || e.key === "F") && !e.metaKey && !e.ctrlKey && !e.altKey && !/input|textarea/i.test(document.activeElement?.tagName || "")) toggleFull();
+    });
+  }
   /* el sonido parte con el primer toque, donde sea */
   const firstTouch = (e) => {
     if (e.target && e.target.closest && e.target.closest("#soundBtn")) return;
